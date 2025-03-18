@@ -28,7 +28,16 @@ import SVGN from '../assets/icons/SVGN.vue'
 
 <style scoped>
 .iconN {
-    padding: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+}
+.iconN:hover {
+    border-radius: 50%;
+    background-color: #0b1530;
 }
 
 .header-menu {
