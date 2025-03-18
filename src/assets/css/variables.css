@@ -1,0 +1,14 @@
+:root {
+
+    /* Backgroun Color Dark */
+    --bg-color-dark: #010610;
+
+    /* Backgrounds Color Light */
+    --bg-color-light: #f0f3f4;
+
+    /* Color Fonts */
+    --text-color-light: #f5f5f5;
+    --text-color-muted: #a0a0a0;
+    --primary-color: #f5f5f5;
+    --secondary-color: #f5f5f5;
+}
