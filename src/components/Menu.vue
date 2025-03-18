@@ -35,18 +35,23 @@ import SVGN from '../assets/icons/SVGN.vue'
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    top: 1rem;
 }
 
 .list-menu {
     display: flex;
-    gap: 2rem;
     justify-content: flex-end;
     align-items: center;
-    padding: 1rem;
+}
+
+.item-menu {
+
 }
 
 .item-menu a {
-    padding: .5rem;
+    height: 100%;
+    padding: .6rem;
     text-decoration: none;
     color: #d0d3d4;
 }
