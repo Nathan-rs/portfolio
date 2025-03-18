@@ -36,8 +36,6 @@ import SVGN from '../assets/icons/SVGN.vue'
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    position: relative;
-    /* top: 1rem; */
 }
 
 .list-menu {
