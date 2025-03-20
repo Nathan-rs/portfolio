@@ -8,21 +8,17 @@ import FooterMenu from './FooterMenu.vue';
 
     <div class="container-home">
         <Menu />
-        <MessageHome 
-            name="Natã Ramos"
-            funcao="Desenvolvedor FullStack"
-            description=">_ Aplicações web para seu negocio"
-        />
+        <MessageHome name="Natã Ramos" funcao="Desenvolvedor FullStack"
+            description=">_ Aplicações web para seu negocio" />
         <FooterMenu />
     </div>
+
 </template>
 
 <style scoped>
-
 .container-home {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
-
 </style>
