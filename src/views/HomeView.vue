@@ -8,8 +8,11 @@ import FooterMenu from '../components/FooterMenu.vue'
 
     <div class="container">
         <NavBar />
-        <MessageHome name="Natã Ramos" funcao="Desenvolvedor FullStack"
-            description=">_ Aplicações web para seu negocio" />
+        <MessageHome 
+            name="Natã Ramos" 
+            funcao="Desenvolvedor FullStack"
+            description=">_ Aplicações web para seu negocio" 
+        />
         <FooterMenu />
     </div>
 
