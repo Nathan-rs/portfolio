@@ -1,13 +1,12 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import FooterMenu from '../components/FooterMenu.vue'
-// import Profile from '../assets/images/profile.jpg'
 </script>
 
 <template>
     <div class="container">
         <NavBar />
-        <div class="container-about">
+        <main class="container-about">
             <div class="title">
                 <h1>Desenvolvedor FullStack</h1>
             </div>
@@ -55,7 +54,7 @@ import FooterMenu from '../components/FooterMenu.vue'
                     <span>2 meses</span>
                 </p>
             </div>
-        </div>
+        </main>
         <FooterMenu />
     </div>
 </template>
@@ -116,8 +115,6 @@ span {
     background-color: var(--bg-color-dark-secondary);
 }
 
-
-
 blockquote {
     border-left: 4px solid var(--bg-color-dark-secondary);
     padding-left: 20px;
@@ -163,4 +160,10 @@ blockquote {
 .bio {
     text-align: justify;
 }
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
 </style>

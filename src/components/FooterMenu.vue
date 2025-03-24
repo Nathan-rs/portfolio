@@ -26,6 +26,7 @@
 <style scoped>
 .footer-links {
     display: block;
+    padding: 20px 0px;
 }
 
 .list-footer {
