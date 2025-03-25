@@ -18,4 +18,6 @@ import FooterMenu from '../components/FooterMenu.vue'
 
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

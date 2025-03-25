@@ -18,7 +18,7 @@ defineProps({
 </script>
 
 <template>
-    <svg :fill="fill" :width="width" :height="heigth" viewBox="0 0 32 32" version="1.1"
+    <svg :fill="fill" :width="width" :height="height" viewBox="0 0 32 32" version="1.1"
         xmlns="http://www.w3.org/2000/svg">
 
         <title>n</title>
