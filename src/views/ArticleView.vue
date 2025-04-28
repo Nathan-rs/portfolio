@@ -4,7 +4,7 @@ import FooterMenu from '../components/FooterMenu.vue'
 import { articles } from '../data.js'
 import { RouterLink } from 'vue-router'
 
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const date = ref(new Date().toLocaleDateString())
 
@@ -19,7 +19,7 @@ const date = ref(new Date().toLocaleDateString())
                 <li v-for="article in articles" :key="article.id" class="item-article">
                     <a href="#">
                         <span class="note-article">
-                            <span>{{ article.title }}</span>
+                            <span class="title-article">{{ article.title }}</span>
                             <span>
                                 <time datetime="date()">{{ article.date_publish }}</time>
                             </span>
@@ -35,9 +35,9 @@ const date = ref(new Date().toLocaleDateString())
 <style scoped>
 .article {
     width: 760px;
-    min-height: 100%;
+    /* min-height: 100%; */
     margin: 0 auto;
-    padding: 0px 20px;
+    padding: 0 20px;
     /* border: 1px solid #fff; */
 }
 
@@ -45,7 +45,13 @@ const date = ref(new Date().toLocaleDateString())
     margin: 60px 0 0;
     font-size: 24px;
     font-weight: bold;
+    padding: 0 20px;
     color: var(--text-color-muted);
+}
+
+.title-article {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .list-articles {
@@ -53,7 +59,7 @@ const date = ref(new Date().toLocaleDateString())
     flex-direction: column;
     width: 100%;
     list-style: none;
-    margin: 10px 0px 0px;
+    margin: 20px 0px 0px;
 }
 
 .item-article {
@@ -69,7 +75,7 @@ const date = ref(new Date().toLocaleDateString())
 }
 
 .item-article:hover {
-    border: none;
+    /* border: none; */
 }
 
 .item-article a:hover {
@@ -81,5 +87,79 @@ const date = ref(new Date().toLocaleDateString())
 .note-article {
     display: flex;
     justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+    .article {
+        width: 100%;
+    }
+
+    .article h2 {
+        text-align: center;
+    }
+
+    .note-article {
+        flex-direction: column;
+    }
+
+    .note-article span:first-child {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .article {
+        width: 100%;
+    }
+
+    .article h2 {
+        text-align: center;
+    }
+
+    .note-article {
+        flex-direction: column;
+    }
+
+    .note-article span:first-child {
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .article {
+        width: 100%;
+
+    }
+
+    .article h2 {
+        text-align: center;
+    }
+
+    .note-article {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .article {
+        width: 100%;
+    }
+
+    .article h2 {
+        text-align: left;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    .note-article {
+        flex: 1;
+    }
+
 }
 </style>
