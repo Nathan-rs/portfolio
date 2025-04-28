@@ -9,7 +9,7 @@ import SVGN from '../assets/icons/SVGN.vue'
             <ul class="list-menu">
                 <div class="iconN">
                     <li class="">
-                        <RouterLink to="/">
+                        <RouterLink to="/portfolio/">
                             <SVGN width="20" height="20" fill="#a0a0a0" />
                         </RouterLink>
                     </li>
@@ -17,15 +17,15 @@ import SVGN from '../assets/icons/SVGN.vue'
 
                 <div class="items">
                     <li class="item-menu">
-                        <RouterLink to="/about">About</RouterLink>
+                        <RouterLink to="/portfolio/about">About</RouterLink>
                     </li>
 
                     <li class="item-menu">
-                        <RouterLink to="/articles">Articles</RouterLink>
+                        <RouterLink to="/portfolio/articles">Articles</RouterLink>
                     </li>
 
                     <li class="item-menu">
-                        <RouterLink to="/projects">Projects</RouterLink>
+                        <RouterLink to="/portfolio/projects">Projects</RouterLink>
                     </li>
                 </div>
             </ul>

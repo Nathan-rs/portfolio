@@ -6,10 +6,10 @@ import ArticleView from "../views/ArticleView.vue"
 import ProjectView from "../views/ProjectView.vue"
 
 const routes = [
-    { path: '/', component: HomeView },
-    { path: '/about', component: AboutView },
-    { path: '/articles', component: ArticleView },
-    { path: '/projects', component: ProjectView },
+    { path: '/portfolio', component: HomeView },
+    { path: '/portfolio/about', component: AboutView },
+    { path: '/portfolio/articles', component: ArticleView },
+    { path: '/portfolio/projects', component: ProjectView },
 ]
 
 const router = createRouter({
