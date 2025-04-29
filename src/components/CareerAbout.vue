@@ -8,16 +8,49 @@ const props = defineProps({
     location: String,
     startDate: String,
     endDate: String,
-    duration: String,
 })
 
-const duracao = computed(() => {
-    const start = new Date(props.startDate.split('/').reverse().join('-'))
-    const end = new Date(props.endDate.split('/').reverse().join('-'))
-    const diffTime = Math.abs(end - start)
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    return `${Math.floor(diffDays / 30)} meses`
+const startDateShort = computed(() => {
+    const { startDate } = props
+
+    if(!startDate || startDate.trim() === '') return 'Data inválida'
+
+    const start = new Date(startDate.split('/').reverse().join('-'))
+
+    if(isNaN(start.getTime())) return 'Data inválida'
+
+    return start.toLocaleDateString('pt-BR', {
+        month: 'short', year: 'numeric'
+    })
 })
+
+const endDateShort = computed(() => {
+    const { startDate, endDate } = props
+
+    if(!endDate || endDate.trim() === '') return 'Atualmente'
+
+    if(endDate < startDate) return 'Data inválida'
+
+    const end = new Date(endDate.split('/').reverse().join('-'))
+
+    if(isNaN(end.getTime())) return 'Data inválida'
+
+    return end.toLocaleDateString('pt-BR', {
+        month: 'short', year: 'numeric'
+    })
+})
+
+const dateFormated = computed(() => {
+    const startDate = startDateShort.value
+    const endDate = endDateShort.value
+
+    return `${startDate} - ${endDate}` 
+})
+
+// const duration = computed(() => {
+//     const {startDate, endDate } = props
+// })
+
 
 </script>
 
@@ -29,24 +62,8 @@ const duracao = computed(() => {
             <span> - {{ location }}</span>
         </p>
         <p>
-            <span>
-                {{
-                    (new Date(startDate.split('/').reverse().join('-'))).toLocaleDateString('pt-BR',
-                        {
-                            month: 'short', year: 'numeric'
-                        })
-                }}
-            </span>
-            <span> - </span>
-            <span>
-                {{
-                    (new Date(endDate.split('/').reverse().join('-'))).toLocaleDateString('pt-BR', {
-                        month: 'short', year: 'numeric'
-                    })
-                }}
-            </span>
-            <span> . : </span>
-            <span>{{ duration ? duration : duracao }}</span>
+            <span> {{ dateFormated}} </span>
+            <!-- <span> . : {{ duration }}</span> -->
         </p>
     </div>
 </template>
