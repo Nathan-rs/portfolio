@@ -1,6 +1,55 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import FooterMenu from '../components/FooterMenu.vue'
+import CareerAbout from '../components/CareerAbout.vue'
+
+const careers = [
+    {
+        id: 1,
+        position: 'Desenvolvedor Web',
+        startDate: '01/08/2023',
+        endDate: '01/11/2023',
+        company: 'Uso Prata',
+        location: 'Caxias, Maranhão'
+    },
+    {
+        id: 2,
+        position: 'Estágio em Inteligência Artificial',
+        startDate: '01/03/2024',
+        endDate: '01/04/2024',
+        company: 'Decole Contabilidade',
+        location: 'Caxias, Maranhão'
+    },
+    {
+        id: 3,
+        position: 'Desenvolvedor FullStack',
+        startDate: '01/04/2024',
+        endDate: '01/05/2024',
+        company: 'Allinsys',
+        location: 'Rio Grande do Sul'
+    },
+    {
+        id: 4,
+        position: 'Desenvolvedor FullStack',
+        startDate: '01/06/2024',
+        endDate: '01/08/2024',
+        company: 'Allinsys',
+        location: 'Rio Grande do Sul'
+    },
+    {
+        id: 5,
+        position: 'Desenvolvedor FullStack',
+        startDate: '01/05/2024',
+        endDate: 'Atualmente',
+        company: 'IG7 - SIPAE',
+        location: 'Caxias, Maranhão',
+        duration: 'Atualmente'
+    }
+]
+
+// Ordenar pela data
+careers.sort((a, b) => b.id - a.id);
+
 </script>
 
 <template>
@@ -39,20 +88,17 @@ import FooterMenu from '../components/FooterMenu.vue'
                     </a>
                 </div>
             </div>
-            <h2 class="career">Career</h2>
+            <h2 class="title-career">Career</h2>
             <div class="experiences">
-                <h3>Desenvolvedor Web</h3>
-                <p class="">
-                    <a class="company" href="#" target="_blank">Uso Prata</a>
-                    <span> - Caxias, Maranhão</span>
-                </p>
-                <p>
-                    <span>Ago 2023</span>
-                    <span> - </span>
-                    <span>Nov 2023</span>
-                    <span> . : </span>
-                    <span>2 meses</span>
-                </p>
+                <!-- <CareerAbout :position="'Desenvolvedor Web'" :startDate="'01/08/2023'" :endDate="'01/11/2023'"
+                    :company="'Uso Prata'" :location="'Caxias, Maranhão'"/> -->
+
+                <ul class="list-career">
+                    <li class="item-carrer" v-for="career in careers" :key="career.id">
+                        <CareerAbout :position="career.position" :startDate="career.startDate" :endDate="career.endDate"
+                            :company="career.company" :location="career.location" :duration="career.duration" />
+                    </li>
+                </ul>
             </div>
         </main>
         <FooterMenu />
@@ -60,6 +106,11 @@ import FooterMenu from '../components/FooterMenu.vue'
 </template>
 
 <style scoped>
+.list-career {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
 a {
     font-size: 1em;
@@ -72,12 +123,8 @@ h3 {
     margin: 20px 0px 0px;
 }
 
-.company {
-    border-bottom: .5px solid var(--text-color-muted);
-}
-
 span {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--text-color-muted);
 }
 
@@ -85,7 +132,7 @@ span {
     line-height: 32px;
 }
 
-.career {
+.title-career {
     display: block;
     font-size: 1.6rem;
     font-weight: bold;
@@ -165,5 +212,4 @@ blockquote {
     display: flex;
     height: 100%;
 }
-
 </style>
