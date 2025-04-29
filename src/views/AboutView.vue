@@ -40,10 +40,9 @@ const careers = [
         id: 5,
         position: 'Desenvolvedor FullStack',
         startDate: '01/05/2024',
-        endDate: 'Atualmente',
+        endDate: '',
         company: 'IG7 - SIPAE',
         location: 'Caxias, Maranhão',
-        duration: 'Atualmente'
     }
 ]
 
@@ -96,7 +95,7 @@ careers.sort((a, b) => b.id - a.id);
                 <ul class="list-career">
                     <li class="item-carrer" v-for="career in careers" :key="career.id">
                         <CareerAbout :position="career.position" :startDate="career.startDate" :endDate="career.endDate"
-                            :company="career.company" :location="career.location" :duration="career.duration" />
+                            :company="career.company" :location="career.location" />
                     </li>
                 </ul>
             </div>
