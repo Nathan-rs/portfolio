@@ -1,0 +1,325 @@
+---
+import "@styles/project.css";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const projetos = await getCollection("projects");
+
+    return projetos.map((projeto) => ({
+        params: { slug: projeto.id },
+        props: { projeto },
+    }));
+}
+
+const { projeto } = Astro.props;
+const { Content } = await render(projeto);
+
+const formatedDate = projeto.data.pubDate.toLocaleDateString("pt-BR", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+});
+---
+
+<BaseLayout>
+    <article class="project-detail-article">
+        <header class="project-header">
+            <div class="project-meta">
+                <time datetime={projeto.data.pubDate.toISOString()}
+                    >{formatedDate}</time
+                >
+
+                <a href="/" class="link-back">
+                    <span>&#129056;</span>
+                    <span>Voltar para projeto</span>
+                </a>
+            </div>
+
+            <h1 class="project-title">{projeto.data.title}</h1>
+            <p class="project-description">{projeto.data.description}</p>
+
+            <div class="project-actions">
+                {
+                    projeto.data.githubUrl && (
+                        <a
+                            href={projeto.data.githubUrl}
+                            target="_blank"
+                            class="action-btn"
+                        >
+                            GitHub Repositorio
+                        </a>
+                    )
+                }
+
+                {
+                    projeto.data.demoUrl && (
+                        <a
+                            href={projeto.data.demoUrl}
+                            target="_blank"
+                            class="action-btn action-demo"
+                        >
+                            Visualizar &nearr;
+                        </a>
+                    )
+                }
+            </div>
+        </header>
+
+        <div class="post-content">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+
+    .link-back {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #58a6ff;
+    }
+
+    .link-back:hover {
+        text-decoration: underline;
+    }
+
+    .project-detail-article {
+        padding-top: 1rem;
+        /* border: 1px solid #fff; */
+        overflow-wrap: anywhere;
+    }
+
+    .post-content {
+        width: 100%;
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        line-height: 1.8;
+    }
+
+    /* Titulos */
+    .post-content :global(h2) {
+        margin-top: 2.75rem;
+        margin-bottom: 1rem;
+        font-size: 1.65rem;
+        line-height: 1.3;
+        letter-spacing: -0.025em;
+    }
+
+    .post-content :global(h3) {
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1.3;
+        line-height: 1.4;
+    }
+
+    .post-content :global(p) {
+        margin: 0 0 1.25rem;
+    }
+
+    /* Listas */
+    .post-content :global(ul),
+    .post-content :global(ol) {
+        margin: 0 0 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .post-content :global(ul) {
+        list-style: disc;
+    }
+
+    .post-content :global(ol) {
+        list-style: decimal;
+    }
+
+    .post-content :global(li) {
+        padding-left: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-content :global(li p) {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Imagens e GIFs */
+
+    .post-content :global(img) {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin: 1.75rem auto;
+        border-radius: 0.75rem;
+    }
+
+    /* Blocos de codigos */
+
+    .post-content :global(pre) {
+        max-width: 100%;
+        min-width: 0;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        overflow-x: auto;
+        border: 1px solid #383838;
+        border-radius: 0.75rem;
+        background: #1a1a19;
+        line-height: 1.6;
+    }
+
+    .post-content :global(pre code) {
+        overflow-wrap: normal;
+        white-space: pre;
+    }
+
+    .post-content :global(:not(pre) > code) {
+        padding: 0.15rem 0.35rem;
+        border-radius: 0.3rem;
+        background: rgb(128 128 128 / 15%);
+        font-size: 0.9rem;
+    }
+
+    /* Tabelas */
+
+    .post-content :global(table) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        border-collapse: collapse;
+        white-space: nowrap;
+    }
+
+    .post-content :global(th),
+    .post-content :global(td) {
+        padding: 0.7rem 1rem;
+        border: 1px solid #454545;
+        text-align: left;
+    }
+
+    .post-content :global(th) {
+        background: rbg(128 128 128 / 15%);
+    }
+
+    /* Separadores */
+    .post-content :global(hr) {
+        margin: 2.5rem 0;
+        border: 0;
+        border-top: 1px solid #454545;
+    }
+
+    /* Links dentro do conteudo */
+    .post-content :global(a) {
+        text-decoration: underline;
+        text-decoration-color: #737373;
+        text-underline-offset: 3px;
+    }
+
+    .post-content :global(a:hover) {
+        text-decoration-color: currentColor;
+    }
+
+    /* Ajuste para telas pequenas */
+    @media(max-width: 600px) {
+        .post-content {
+            padding-inline: 1rem;
+        }
+
+        .post-content :global(h2) {
+            margin-top: 2.25rem;
+            font-size: 1.45rem;
+        }
+
+        .post-content :global(pre) {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .post-content :global(img) {
+            border-radius: 0.5rem;
+        }
+    }
+
+    .project-header {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.75rem;
+        border-bottom: 1px solid #fff;
+    }
+
+    .project-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.54rem;
+        font-size: 0.88rem;
+        margin-bottom: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .project-title {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 2.4rem;
+        line-height: 1.25;
+        letter-spacing: -0.0025rem;
+    }
+
+    .project-description {
+        font-size: 1.15rem;
+        margin: 0 0 1.5rem 0;
+        line-height: 1.6;
+    }
+
+    .project-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.45rem 0.9rem;
+        border-radius: 6px;
+        border: 1px solid #525252;
+        background-color: #141413;
+        font-size: 0.88rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+            border-color 0.15s ease,
+            background-color 0.15s ease;
+    }
+
+    .action-btn:hover {
+        border: 1px solid #d4d4d4;
+        background-color: #141413;
+        color: #d4d4d4;
+    }
+
+    .action-demo {
+        background-color: #525252;
+        color: #fff;
+        border-color: #d4d4d4;
+    }
+
+    .action-demo:hover {
+        background-color: #646161;
+        color: #fff;
+    }
+
+    .project-footer {
+        margin-top: 3.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #fff;
+    }
+
+    .back-link {
+        text-decoration: none;
+        font-weight: 500;
+    }
+</style>

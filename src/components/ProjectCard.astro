@@ -1,0 +1,20 @@
+---
+const { id, key, title, description, tags, year } = Astro.props;
+---
+
+<li class="project-item" id={`project-${id}-${key}`}>
+    <a href={`/projects/${id}`}>
+        <div class="project-item-header">
+            <div class="project-item-title">{title}</div>
+            <span class="project-date">{year}</span>
+        </div>
+
+        <p class="project-item-description">
+            {description}
+        </p>
+
+        <div class="project-tag">
+            {tags.map((tag: string) => <span>#{tag}</span>)}
+        </div>
+    </a>
+</li>

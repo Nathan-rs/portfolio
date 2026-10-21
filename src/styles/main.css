@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+    margin: 0;
+}
+
+:root {
+    --wp-bg: #F5F4F0;
+    --wp-text: #141413;
+}
+
+[data-theme="dark"] {
+    --wp-bg: #141413;
+    --wp-text: #F5F4F0;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--wp-text);
+    background-color: var(--wp-bg);
+    background-image: url('../assets/fundo.svg');
+    background-size: 28px 28px;
+    transition: backgroun-color 0.2s ease, color 0.2s ease;
+}

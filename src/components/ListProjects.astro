@@ -1,0 +1,38 @@
+---
+import ProjectCard from "@components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+
+const projetos = await getCollection("projects");
+
+const projetosOrdenados = projetos.sort(
+    (a: any, b: any) => b.data.pubDate - a.data.pubDate,
+);
+---
+
+<section class="projects-line">
+    <div class="count-projects">
+        <span>Exibindo 1 de 1 projetos</span>
+        <div class="order-project">
+            <span>Ordenar: Mais recentes</span>
+            <!-- <img src="../assets/arrow_up.svg" alt="" /> -->
+        </div>
+    </div>
+
+    <div class="view-projects">
+        <ul class="list-projects">
+            {
+                projetos.map((projeto) => (
+                    <ProjectCard
+                        id={projeto.id}
+                        key={projeto.data.id}
+                        title={projeto.data.title}
+                        description={projeto.data.description}
+                        tags={projeto.data.tags}
+                        year={projeto.data.pubDate.getFullYear()}
+                    />
+                ))
+            }
+        </ul>
+    </div>
+</section>
