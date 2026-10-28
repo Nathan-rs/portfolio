@@ -1,17 +1,95 @@
 <section class="search-line">
     <div class="input-search">
         <input
-            type="text"
+            id="project-search"
+            type="search"
             class="input-project"
-            value=""
             placeholder="Buscar por nome ou tecnologia"
+            aria-label="Buscar projetos por nome, descrição ou tecnologia"
+            autocomplete="off"
         />
     </div>
 
-    <div class="buttons-filters">
-        <button>Todos</button>
-        <button>TUI</button>
-        <button>Shell</button>
-        <button>Web</button>
+    <div class="buttons-filters" aria-label="Filtrar por categoria">
+        <button type="button" data-filter="all" aria-label="true">Todos</button>
+        <button type="button" data-filter="tui" aria-label="false">TUI</button>
+        <button type="button" data-filter="shell" aria-label="false"
+            >Shell</button
+        >
+        <button type="button" data-filter="sql" aria-label="false">SQL</button>
+        <button type="button" data-filter="web" aria-label="false">Web</button>
     </div>
 </section>
+
+<script>
+    const input = document.querySelector<HTMLInputElement>("#project-search");
+    const buttons = document.querySelectorAll<HTMLButtonElement>(
+        ".buttons-filters [data-filter]",
+    );
+
+    const normalize = (value: string) =>
+        value
+            .toLocaleLowerCase("pt-BR")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+
+    let activeFilter = "all";
+
+    function filterProjects() {
+        const query = normalize(input?.value ?? "");
+        const projects =
+            document.querySelectorAll<HTMLElement>(".project-item");
+        let visibleCount = 0;
+
+        projects.forEach((project) => {
+            const searchableText = normalize(project.dataset.search ?? "");
+            const tags = (project.dataset.tags ?? "").split(",").map(normalize);
+
+            const matchesText = searchableText.includes(query);
+            const matchesFilter =
+                activeFilter == "all" || tags.includes(activeFilter);
+
+            const visible = matchesText && matchesFilter;
+
+            project.hidden = !visible;
+
+            if (visible) visibleCount++;
+        });
+
+        const counter = document.querySelector(".count-projects");
+        if (counter) {
+            counter.textContent = `Exibindo ${visibleCount} de ${projects.length} projetos`;
+        }
+
+        const emptyState = document.querySelector<HTMLElement>(".no-results");
+        if (emptyState) {
+            emptyState.hidden = visibleCount !== 0;
+        }
+    }
+
+    input?.addEventListener("input", filterProjects);
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            activeFilter = button.dataset.filter ?? "all";
+
+            buttons.forEach((item) => {
+                const isActive = item.dataset.filter === activeFilter;
+
+                item.classList.toggle("active", isActive);
+                item.setAttribute("aria-pressed", String(item === button));
+            });
+            filterProjects();
+        });
+    });
+
+    buttons.forEach((button) => {
+        const isActive = button.dataset.filter === activeFilter;
+
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    filterProjects();
+</script>

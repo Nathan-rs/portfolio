@@ -7,8 +7,7 @@ tags:
     - GoLang
     - Shell
     - Terminal
-    - PDF
-    - CSV
+    - SQL
 featured: true
 demoUrl: "https://github.com/Nathan-rs/pdfgen"
 githubUrl: "https://github.com/Nathan-rs/pdfgen"

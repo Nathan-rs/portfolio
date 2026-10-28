@@ -2,7 +2,12 @@
 const { id, key, title, description, tags, year } = Astro.props;
 ---
 
-<li class="project-item" id={`project-${id}-${key}`}>
+<li
+    class="project-item"
+    id={`project-${id}-${key}`}
+    data-search={`${title} ${description} ${tags.join(" ")}`}
+    data-tags={tags.join(",")}
+>
     <a href={`/projects/${id}`}>
         <div class="project-item-header">
             <div class="project-item-title">{title}</div>

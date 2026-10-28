@@ -27,22 +27,102 @@ pre {
     margin: 0;
 }
 
+h1 {
+    color: var(--text-primary);
+}
+
 :root {
-    --wp-bg: #F5F4F0;
-    --wp-text: #141413;
+    color-scheme: light;
+    --bg: #fbf9f4;
+    --bg-muted: #f5f2eb;
+    --bg-code: #f1ece0;
+    --bg-tag: #808080;
+    --bg-tag-muted: #52525226;
+    --bg-invert: #141413;
+    --bg-tag-muted-invert: #525252;
+
+    --text-invert: #fbf9f4;
+    --text-primary: #1c211e;
+    --text-primary-muted: #4d4d4d;
+    --text-secondary: #808080;
+    --text-info: #58a6ff;
+    --text-success: #1d4836;
+    --text-success-strong: #123829;
+    --text-on-surface: var(--text-invert);
+
+    --text-danger: #a63a1e;
+    --text-danger-strong: #060505;
+
+    --border: #e2ddd3;
+    --border-strong: #d6cfc2;
+    --border-muted: #8c7847;
+    --border-invert: #141413;
+    --border-invert-muted: #525252;
+
+    --bg-flag: rgb(128 128 128 / 15%);
+}
+
+.astro-code {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+[data-theme="light"] .astro-code {
+    background-color: var(--bg-code) !important;
+}
+
+[data-theme="light"] .astro-code span {
+    color: var(--shiki-light) !important;
+}
+
+[data-theme="dark"] .astro-code {
+    background-color: var(--bg-code) !important;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .astro-code span {
+    color: var(--shiki-dark) !important;
 }
 
 [data-theme="dark"] {
-    --wp-bg: #141413;
-    --wp-text: #F5F4F0;
+    --bg: #1c1b18;
+    --bg-muted: #24221e;
+    --bg-code: #302c25;
+    --bg-tag: #808080;
+    --bg-tag-invert: #525252;
+    --bg-tag-muted-invert: #8c7847;
+    --bg-invert: #fbf9f4;
+
+    --text-invert: #141413;
+    --text-primary: #e8e3d9;
+    --text-primary-muted: #b6b0a5;
+    --text-secondary: #999186;
+    --text-info: #58a6ff;
+    --text-success: #8eae98;
+    --text-success-strong: #b2cbb8;
+    --text-muted: #8c7847;
+    --text-on-surface: var(--text-primary);
+
+    --text-danger: #e09a7e;
+    --text-danger-strong: #f2c3b1;
+
+    --border: #39352e;
+    --border-strong: #4b453b;
+    --border-muted: #8c7847;
+    --border-invert: #fbf9f4;
+    --border-invert-muted: #b6b0a5;
+
+    --bg-flag: rgba(242, 195, 177, 15%);
 }
 
 body {
     font-family: sans-serif;
     font-size: 16px;
     line-height: 1.7;
-    color: var(--wp-text);
-    background-color: var(--wp-bg);
+    color: var(--text);
+    background-color: var(--bg);
     background-image: url('../assets/fundo.svg');
     background-size: 28px 28px;
     transition: backgroun-color 0.2s ease, color 0.2s ease;
