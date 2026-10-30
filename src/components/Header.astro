@@ -19,7 +19,12 @@
             </div>
 
             <div class="config-perfil">
-                <button class="icon-theme">
+                <button
+                    id="theme-toggle"
+                    class="icon-theme"
+                    type="button"
+                    aria-label="Alterar tema"
+                >
                     <svg
                         id="theme-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -47,3 +52,13 @@
         </div>
     </div>
 </header>
+
+<script>
+    import { initTheme, toggleTheme } from "@/theme.js";
+
+    initTheme(document.documentElement.dataset.theme || "light");
+
+    document
+        .querySelector("#theme-toggle")
+        ?.addEventListener("click", toggleTheme);
+</script>

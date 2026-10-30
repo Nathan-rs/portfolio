@@ -18,8 +18,14 @@ import Footer from "@/components/Footer.astro";
 			is:inline
 			define:vars={{ defaultTheme: siteConfig.defaultTheme }}
 		>
-			document.documentElement.dataset.theme =
-				localStorage.getItem("theme") ?? defaultTheme;
+			const savedTheme = localStorage.getItem("theme");
+
+			const theme =
+				savedTheme === "light" || savedTheme === "dark"
+					? savedTheme
+					: defaultTheme;
+
+			document.documentElement.dataset.theme = theme;
 		</script>
 
 		<title>Projetos</title>
