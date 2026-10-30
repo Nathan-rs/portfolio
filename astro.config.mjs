@@ -3,6 +3,9 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+    site: "https://nathan-rs.github.io",
+    base: "/portfolio",
+
     server: {
         host: true,
         port: 4321

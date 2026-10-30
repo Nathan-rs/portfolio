@@ -8,7 +8,7 @@ const { id, key, title, description, tags, year } = Astro.props;
     data-search={`${title} ${description} ${tags.join(" ")}`}
     data-tags={tags.join(",")}
 >
-    <a href={`/projects/${id}`}>
+    <a href={`${import.meta.env.BASE_URL}/projects/${id}/`}>
         <div class="project-item-header">
             <div class="project-item-title">{title}</div>
             <span class="project-date">{year}</span>
